@@ -1,7 +1,17 @@
 
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CountingChangeCombinations", "CountingChangeCombinations\CountingChangeCombinations.csproj", "{6DA5631B-7CE8-4F01-BDC4-95F194C1862A}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CountingChangeCombinations", "CountingChangeCombinations", "{B34E5234-1507-4D3A-877C-073D6BDC6D37}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCCPlayground", "CCCPlayground\CCCPlayground.csproj", "{18C424EC-E59F-49AF-A86D-F818B41FEADF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCCPlayground.Tests", "CCCPlayground.Tests\CCCPlayground.Tests.csproj", "{03CF58ED-78E4-4338-933E-AD2B3BB7C32D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RankingPokerHands", "RankingPokerHands", "{DD5B4350-0723-499F-8598-33567853959E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playgound", "Playgound\Playgound.csproj", "{255CBC1C-1BFD-4C1B-BA64-39A963431421}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playground.Tests", "Playground.Tests\Playground.Tests.csproj", "{B1C54AC5-1475-4F75-A42B-5FBBE8D1468F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,9 +19,25 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6DA5631B-7CE8-4F01-BDC4-95F194C1862A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6DA5631B-7CE8-4F01-BDC4-95F194C1862A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6DA5631B-7CE8-4F01-BDC4-95F194C1862A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6DA5631B-7CE8-4F01-BDC4-95F194C1862A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18C424EC-E59F-49AF-A86D-F818B41FEADF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18C424EC-E59F-49AF-A86D-F818B41FEADF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18C424EC-E59F-49AF-A86D-F818B41FEADF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18C424EC-E59F-49AF-A86D-F818B41FEADF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03CF58ED-78E4-4338-933E-AD2B3BB7C32D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03CF58ED-78E4-4338-933E-AD2B3BB7C32D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03CF58ED-78E4-4338-933E-AD2B3BB7C32D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03CF58ED-78E4-4338-933E-AD2B3BB7C32D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{255CBC1C-1BFD-4C1B-BA64-39A963431421}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{255CBC1C-1BFD-4C1B-BA64-39A963431421}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{255CBC1C-1BFD-4C1B-BA64-39A963431421}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{255CBC1C-1BFD-4C1B-BA64-39A963431421}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B1C54AC5-1475-4F75-A42B-5FBBE8D1468F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B1C54AC5-1475-4F75-A42B-5FBBE8D1468F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B1C54AC5-1475-4F75-A42B-5FBBE8D1468F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B1C54AC5-1475-4F75-A42B-5FBBE8D1468F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{18C424EC-E59F-49AF-A86D-F818B41FEADF} = {B34E5234-1507-4D3A-877C-073D6BDC6D37}
+		{03CF58ED-78E4-4338-933E-AD2B3BB7C32D} = {B34E5234-1507-4D3A-877C-073D6BDC6D37}
 	EndGlobalSection
 EndGlobal
