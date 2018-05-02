@@ -12,98 +12,99 @@ namespace Playgound.Katas
 
     public class PokerHand
     {
-        public int Points { get; private set; } = 0;
-        public int Level { get; private set; } = 0;
+        public string originPokers { get; private set; }
+        public long Power { get; private set; } = 0;
 
         public PokerHand(string hand)
         {
+            originPokers = hand;
             CalculatePower(hand.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
         }
 
         private void CalculatePower(string[] pokers)
         {
-            var numbers = pokers.Select(m => TransformPoint(m.Substring(0, 1))).OrderBy(maa => maa);
-            Points = SumPoints(numbers);
+            string[] numberStrings = pokers.Select(m => TransformPoint(m.Substring(0, 1))).OrderByDescending(maa => maa).ToArray();
+            string level = "10", levelPoint = "00";
 
-            if(IsContinuous(numbers.ToArray()))
+            if (IsContinuous(numberStrings))
             {
-                if(IsAllSameSuit(pokers))
+                if (IsAllSameSuit(pokers))
                 {
-                    if(Points == 9*10*11*12*13)
+                    if (numberStrings.Select(m => int.Parse(m)).Sum() == 9 + 10 + 11 + 12 + 13)
                     {
-                        Level = 10;
+                        level = "20";
+                        levelPoint = "13";
                     }
                     else
                     {
-                        Level = 9;
+                        level = "19";
+                        levelPoint = numberStrings.FirstOrDefault();
                     }
                 }
                 else
                 {
-                    Level = 5;
+                    level = "15";
+                    levelPoint = numberStrings.FirstOrDefault();
                 }
             }
             else
             {
-                var groupNumbers = numbers.GroupBy(m => m,(key, group) => new { number = key, count = group.Count()  });
+                var groupNumbers = numberStrings.GroupBy(m => m, (key, group) => new { number = key, count = group.Count() });
 
 
-                switch(groupNumbers.Count())
+                switch (groupNumbers.Count())
                 {
                     case 2:
-                        if(groupNumbers.Max(m => m.count) == 4)
+                        if (groupNumbers.Max(m => m.count) == 4)
                         {
-                            Level = 8;
+                            level = "18";
+                            levelPoint = groupNumbers.Where(m => m.count == 4).Select(m => m.number).SingleOrDefault();
                         }
                         else
                         {
-                            Level = 7;
+                            level = "17";
+                            levelPoint = groupNumbers.Where(m => m.count == 3).Select(m => m.number).SingleOrDefault();
                         }
                         break;
                     case 3:
-                        if(groupNumbers.Max(m => m.count) == 3 )
+                        if (groupNumbers.Max(m => m.count) == 3)
                         {
-                            Level = 4;
+                            level = "14";
+                            levelPoint = groupNumbers.Where(m => m.count == 3).Select(m => m.number).SingleOrDefault();
                         }
                         else
                         {
-                            Level = 3;
+                            level = "13";
+                            levelPoint = groupNumbers.Where(m => m.count == 2).Select(m => m.number).OrderByDescending(m => m).FirstOrDefault();
                         }
                         break;
                     case 4:
-                        Level = 2;
+                        level = "12";
+                        levelPoint = groupNumbers.Where(m => m.count == 2).Select(m => m.number).SingleOrDefault();
                         break;
                     case 5:
-                        if(IsAllSameSuit(pokers))
+                        if (IsAllSameSuit(pokers))
                         {
-                            Level = 6;
+                            level = "16";
                         }
                         else
                         {
-                            Level = 1;
+                            level = "11";
                         }
+                        levelPoint = groupNumbers.OrderByDescending(m => m.number).Select(m => m.number).FirstOrDefault();
                         break;
                     default:
-                        Level = 0;
+                        level = "10";
                         break;
                 }
             }
+
+            Power = Convert.ToInt64($"{level}{levelPoint}{string.Join("", numberStrings)}");
         }
 
-        private int SumPoints(IEnumerable<int> points)
+        private string TransformPoint(string poker)
         {
-            int result = 1;
-            foreach(int pokerNumber in points)
-            {
-                result += pokerNumber;
-            }
-
-            return result;
-        }
-
-        private int TransformPoint(string poker)
-        {
-            switch(poker)
+            switch (poker)
             {
                 case "2":
                 case "3":
@@ -113,29 +114,30 @@ namespace Playgound.Katas
                 case "7":
                 case "8":
                 case "9":
-                    return int.Parse(poker) - 1;
+                    return (int.Parse(poker) - 1).ToString().PadLeft(2, '0');
                 case "T":
-                    return 9;
+                    return "09";
                 case "J":
-                    return 10;
+                    return "10";
                 case "Q":
-                    return 11;
+                    return "11";
                 case "K":
-                    return 12;
+                    return "12";
                 case "A":
-                    return 13;
+                    return "13";
                 default:
-                    return 0;
+                    return "00";
             }
         }
 
-        private bool IsContinuous(int[] numbers)
+        private bool IsContinuous(string[] numbers)
         {
             bool result = true;
+            var numbersAsc = numbers.OrderBy(m => m).ToArray();
 
-            for (int i = 0; i < numbers.Length - 1; i ++)
+            for (int i = 0; i < numbersAsc.Length - 1; i++)
             {
-                if(numbers[i] + 1 != numbers[i + 1])
+                if (int.Parse(numbersAsc[i]) + 1 != int.Parse(numbersAsc[i + 1]))
                 {
                     result = false;
                     break;
@@ -152,18 +154,12 @@ namespace Playgound.Katas
 
         public Result CompareWith(PokerHand hand)
         {
-            if(Level > hand.Level)
-            {
-                return Result.Win;
-            }
-            else if(Level == hand.Level)
-            {
-                return Points == hand.Points ? Result.Tie : Points > hand.Points ? Result.Win : Result.Loss;
-            }
-            else
-            {
-                return Result.Loss;
-            }
+            Console.WriteLine($"my poker         = {originPokers}");
+            Console.WriteLine($"my power         = {Power}");
+            Console.WriteLine($"opponent's poker = {hand.originPokers}");
+            Console.WriteLine($"opponent's power = {hand.Power}");
+
+            return Power == hand.Power ? Result.Tie : Power > hand.Power ? Result.Win : Result.Loss;
         }
     }
 }
