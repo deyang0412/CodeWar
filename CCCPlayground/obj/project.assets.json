@@ -674,18 +674,19 @@
       "projectName": "CCCPlayground",
       "projectPath": "/Users/ocean-netrd/Projects/CodeWar/CCCPlayground/CCCPlayground.csproj",
       "packagesPath": "/Users/ocean-netrd/.nuget/packages/",
-      "outputPath": "/Users/ocean-netrd/Projects/CodeWar/CCCPlayground/obj/",
+      "outputPath": "/Users/ocean-netrd/Projects/CodeWar/CCCPlayground/obj",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "/Users/ocean-netrd/.nuget/NuGet/NuGet.Config"
+        "/Users/ocean-netrd/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"
       ],
       "sources": {
+        "/Users/ocean-netrd/Documents/TelerikForAspNetCore": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -703,8 +704,9 @@
       "netcoreapp2.0": {
         "dependencies": {
           "Microsoft.NETCore.App": {
+            "suppressParent": "All",
             "target": "Package",
-            "version": "[2.0.0, )",
+            "version": "2.0",
             "autoReferenced": true
           }
         },
